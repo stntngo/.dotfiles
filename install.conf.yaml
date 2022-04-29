@@ -3,6 +3,7 @@
 - defaults:
     link:
       create: true
+      force: true
 
 - link:
     ~/.profile: profile
@@ -20,3 +21,4 @@
       path: tridactyl/**
       glob: true
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
