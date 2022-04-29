@@ -49,3 +49,9 @@
   - alacritty
   - amethyst
   # - firefox TODO
+
+- shell:
+  - command: '[ $(command -v $SHELL) = $(which zsh) ] || chshs -s $(which zsh)'
+    description: Setting zsh as default shell
+  - command: '[ "$ZSH" ] || sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+    description: Installing ohmyzsh
