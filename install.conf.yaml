@@ -48,7 +48,7 @@
 - cask:
   - alacritty
   - amethyst
-  # - firefox TODO
+  - firefox
 
 - shell:
   - command: '[ $(command -v $SHELL) = $(which zsh) ] || chshs -s $(which zsh)'
