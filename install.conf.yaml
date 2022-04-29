@@ -22,3 +22,30 @@
       glob: true
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
+
+- install-brew: true
+
+- brew:
+  - babashka
+  - bat
+  - clojure
+  - direnv
+  - elixir
+  - elixir-ls
+  - erlang
+  - exa
+  - fzf
+  - go
+  - haskell-stack
+  - leiningen
+  - pyright
+  - python@3.10
+  - ripgrep
+  - tmux
+  - tokei
+  - zig --HEAD
+
+- cask:
+  - alacritty
+  - amethyst
+  # - firefox TODO
