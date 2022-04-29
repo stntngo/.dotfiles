@@ -1,5 +1,9 @@
 - clean: ['~']
 
+- defaults:
+    link:
+      create: true
+
 - link:
     ~/.profile: profile
     ~/.bash_profile: bash_profile
@@ -11,18 +15,8 @@
     ~/.zshrc: zshrc
     ~/.config/nvim/:
       path: nvim/**
-      create: true
-      force: true
-      relink: true
       glob: true
     ~/.config/tridactyl:
       path: tridactyl/**
-      create: true
-      force: true
-      relink: true
       glob: true
-    ~/.config/alacritty/alacritty.yml:
-      path: alacritty.yml
-      create: true
-      force: true
-      relink: true
+    ~/.config/alacritty/alacritty.yml: alacritty.yml
