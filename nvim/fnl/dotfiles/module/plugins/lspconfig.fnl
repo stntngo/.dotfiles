@@ -100,6 +100,14 @@
        :capabilities capabilities
        :on_attach on-attach})
 
+    (lsp.tsserver.setup
+      {:name :tsserver
+       :cmd ["typescript-language-server" "--stdio"]
+       :whitelist [:javascript :javascriptreact :javascript.jsx :typescript :typescriptreact :typescript.tsx]
+       :init_options {:hostInfo :neovim}
+       :capabilities capabilities
+       :on_attach on-attach})
+
     (let [group (nvim.create_augroup
                   :language-server
                   {:clear true})]
@@ -114,7 +122,11 @@
                    "*.clj"
                    "*.edn"
                    "*.sh"
-                   "*.zig"]
+                   "*.zig"
+                   "*.ts"
+                   "*.tsx"
+                   "*.js"
+                   "*.jsx"]
          :command "lua vim.lsp.buf.formatting()"
          :group group}))))
     
