@@ -15,3 +15,9 @@
       force: true
       relink: true
       glob: true
+    ~/.config/tridactyl:
+      path: tridactyl/**
+      create: true
+      force: true
+      relink: true
+      glob: true

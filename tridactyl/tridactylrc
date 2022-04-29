@@ -1,0 +1,84 @@
+" vim: filetype=vim
+
+" Force this configuration to override any potentially configured values
+sanitize tridactyllocal tridactylsync
+
+" Theming related settings. Empty newtab. tridactyl theme and controlling
+" where the hoverlink is shown -- or not shown.
+set newtab about:blank
+set theme shydactyl
+guiset_quiet hoverlink none
+
+" tridactyl UX related settings. How fast the hints should give way back
+" to normal mode. Scrolling behavior.
+set hintdelay 100
+set smoothscroll true
+set j scrollline 1
+set k scrollline -1
+
+" Custom Search Engines
+set searchurls.eng https://usearch.uberinternal.com/?q=%s&t=all
+set searchurls.gocode https://sourcegraph.uberinternal.com/search?q=repo:%5Ecode%5C.uber%5C.internal/go-code%24+%s&patternType=regexp
+set searchurls.uown https://uown.uberinternal.com/search?q=%s
+set searchurls.whober https://usearch.uberinternal.com/?q=%s&t=people&utm_source=whober&utm_medium=advanced-people-search
+set searchurls.jira https://t3.uberinternal.com/browse/%s
+
+" Custom Ex-Commands for custom search engines.
+command u open eng
+command gocode open gocode
+command uown open uown
+command whober open whober
+command jira open jira
+
+" :godocs {repository}
+"
+" Opens GoDoc documentation pages for the Go package available at {repository}
+" at the appropriate GoDoc site.
+"
+" Examples:
+"	:godocs code.uber.internal/infra/capeng
+"	:godocs github.com/stretchr/testify/assert
+"	:godocs cadence
+command godocs js -p -r godocs.js
+
+" :tabgroup {chunk}
+"
+" Collects all open tabs with {chunk} in their URLs to a new window.
+"
+" Examples:
+" 	:tabgroup github.com
+" 	:tabgroup docs.google.com
+command tabgroup jsb -p -r tabgroup.js
+
+" Disable tridactyl behavior on sites like google docs, nytimes crossword, and
+" gmail.
+js -r disable-pair.js
+
+" Sometimes I'm stuck having to open a page in chrome.
+command chrome jsb -p tri.native.run(`open -a "Google Chrome.app" ${JS_ARG}`)
+
+" Redirect those spammy copies of github wikis to the actual wiki itself.
+autocmd DocStart github\-\wiki\-see\.page js tri.excmds.urlmodify("-t", "github-wiki-see.page/m", "github.com")
+
+" I prefer the look of the mobile version of wikipedia. They've fixed the
+" super narrow content issue.
+autocmd DocStart en\.wikipedia js tri.excmds.urlmodify("-t", "en.wikipedia", "en.m.wikipedia")
+
+" Phabriactor doesn't support firefox even though every other internal website
+" does, so we'll need to open up chrome when that I click a diff link.
+autocmd DocStart code\.uberinternal\.com chrome TRI_FIRED_URL
+
+" I don't like this setting so I'd much rather just get rid of it entirely.
+unbind --mode=ex <C-[>
+
+bind ,<Space> nohlsearch
+bind ,tg fillcmdline tabgroup
+bind ,cc composite get_current_url | chrome
+bind ,ft hint -c [class*="titlelink"]
+
+" More familiar vim-style searching.
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+
