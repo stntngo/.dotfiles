@@ -50,6 +50,10 @@
   - amethyst
   - firefox
 
+- yarn:
+  - typescript
+  - typescript-language-server
+
 - shell:
   - command: '[ $(command -v $SHELL) = $(which zsh) ] || chshs -s $(which zsh)'
     description: Setting zsh as default shell
