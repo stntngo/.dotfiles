@@ -1,0 +1,25 @@
+[user]
+	name = Niels Lindgren
+	email = niels@uber.com
+[branch]
+	autosetuprebase = always
+[rerere]
+	enabled = true
+[url "ssh://gitolite@code.uber.internal/"]
+	insteadOf = git://code.uber.internal/
+[credential "https://git.uberinternal.com"]
+	helper = usso
+[url "ssh://code.uber.internal/"]
+	insteadOf = https://code.uber.internal/
+[url "ssh://config.uber.internal/"]
+	insteadOf = https://config.uber.internal/
+[credential "https://vfs4g-cache.uberinternal.com"]
+	helper = usso
+[http "https://gopkg.uberinternal.com"]
+	followRedirects = true
+[http "https://gopkg.in"]
+	followRedirects = true
+[core]
+	untrackedCache = true
+[url "ssh://git@github.com/uber/"]
+	insteadOf = https://github.com/uber/
