@@ -28,6 +28,8 @@
     (nvim.buf_set_keymap bufnr :n :<c-n> "<cmd>lua vim.diagnostic.goto_prev()<cr>" opts)
     (nvim.buf_set_keymap bufnr :n :<c-p> "<cmd>lua vim.diagnostic.goto_next()<cr>" opts)))
 
+; Set up the lsp configurations. For some reason I've wrapped only the require for the call
+; to require for loading lspconfig in pcall but literally no other call to require.
 (let [(ok? lsp) (pcall #(require :lspconfig))
       cmp_nvim_lsp (require :cmp_nvim_lsp)
       capabilities (-> (vim.lsp.protocol.make_client_capabilities)
@@ -88,6 +90,13 @@
       {:name :zls
        :cmd ["zls"]
        :whitelist [:zls :zir]
+       :capabilities capabilities
+       :on_attach on-attach})
+    
+    (lsp.pyright.setup
+      {:name :pyright
+       :cmd ["pyright-langserver" "--stdio"]
+       :whitelist [:python]
        :capabilities capabilities
        :on_attach on-attach})
 

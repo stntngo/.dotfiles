@@ -1,3 +1,5 @@
+" TODO (niels): Get rid of all of this legacy vimscript and use something like
+" packer to handle packages from inside fennel.
 call plug#begin()
 
 " Global Start Menu
@@ -5,6 +7,7 @@ Plug 'mhinz/vim-startify'
 
 " Visuals
 Plug 'cocopon/iceberg.vim'
+Plug 'shaunsingh/nord.nvim'
 Plug 'vim-airline/vim-airline'
 
 " Universal Plugins
@@ -84,15 +87,6 @@ Plug 'gf3/peg.vim'
 
 call plug#end()
 
-" if executable('pyls')
-" 	au User lsp_setup call lsp#register_server({
-" 		\ 'name': 'pyls',
-" 		\ 'cmd': {server_info->['pyls']},
-" 		\ 'whitelist': ['python'],
-" 		\ })
-" endif
-
-
 " if executable('typescript-language-server')
 " 	au User lsp_setup call lsp#register_server({
 " 		\ 'name': 'typescript-language-server',
@@ -119,11 +113,11 @@ call plug#end()
 " 		\ })
 " endif
 
+" TODO (niels): Move these settings out of vim script and into the fennel
+" configuration as well.
 colorscheme iceberg
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[38;2;%lu;%lu;%lum
 let g:javascript_plugin_flow = 1
-
-" let $EDITOR = 'nvr -cc split --remote-wait'
 
 lua require('aniseed.env').init()
