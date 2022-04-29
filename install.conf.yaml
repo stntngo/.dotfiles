@@ -21,3 +21,8 @@
       force: true
       relink: true
       glob: true
+    ~/.config/alacritty/alacritty.yml:
+      path: alacritty.yml
+      create: true
+      force: true
+      relink: true
