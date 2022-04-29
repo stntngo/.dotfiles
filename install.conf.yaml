@@ -9,5 +9,9 @@
     ~/.vimrc: vimrc
     ~/.zshenv: zshenv
     ~/.zshrc: zshrc
-
-
+    ~/.config/nvim/:
+      path: nvim/**
+      create: true
+      force: true
+      relink: true
+      glob: true

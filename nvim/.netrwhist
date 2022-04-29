@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/niels/Uber/cap_eng/tech-memos/content/memos/2021'
+let g:netrw_dirhist_3='/Users/niels/Uber/cap_eng/tech-memos/content/memos'
+let g:netrw_dirhist_2='/Users/niels/Uber/cap_eng/tech-memos/content'
+let g:netrw_dirhist_1='/Users/niels/Uber/cap_eng/tech-memos/content/memos'
+let g:netrw_dirhist_0='/Users/niels/Uber/cap_eng/tech-memos/content'
+let g:netrw_dirhist_9='/Users/niels/code/stntngo/advent/go/day15'
+let g:netrw_dirhist_8='/Users/niels/go-code/src/code.uber.internal/infra/capeng/capengfx/gsuite/gsheet'
+let g:netrw_dirhist_7='/Users/niels/code/stntngo/advent/go/day13'
+let g:netrw_dirhist_6='/Users/niels/code/stntngo/advent/go/day12'
+let g:netrw_dirhist_5='/Users/niels/code/stntngo/advent/go/day08'
