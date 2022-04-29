@@ -8,3 +8,6 @@
 [submodule "dotbot-rust"]
 	path = dotbot-rust
 	url = https://github.com/alexcormier/dotbot-rust
+[submodule "dotbot-yarn"]
+	path = dotbot-yarn
+	url = https://github.com/duranzno/dotbot-yarn.git
