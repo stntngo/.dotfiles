@@ -17,31 +17,31 @@
    :orange   "#e9b189"
    :violet   "#ada0d3"
    :magenta  "#a093c7"
-   :blach    "#161821"
+   :black    "#161821"
    :blue     "#8fa0c6"
    :red      "#e27878"})
 
 (local mode-color
-  {:n colors.red
-   :i colors.green
-   :v colors.blue
-   "" colors.blue
-   :V colors.blue
-   :c colors.magenta
-   :no colors.red
-   :s colors.orang
-   :S colors.orange
+  {:n   colors.blue
+   :i   colors.orange
+   :v   colors.green
+   "" colors.green
+   :V   colors.green
+   :c   colors.magenta
+   :no  colors.red
+   :s   colors.orang
+   :S   colors.orange
    "" colors.orange
-   :ic colors.yellow
-   :R colors.violet
-   :Rv colors.violet
-   :cv colors.red
-   :ce colors.red
-   :r colors.cyan
-   :rm colors.cyan
+   :ic  colors.yellow
+   :R   colors.violet
+   :Rv  colors.violet
+   :cv  colors.red
+   :ce  colors.red
+   :r   colors.cyan
+   :rm  colors.cyan
    "r?" colors.cyan
-   :! colors.red
-   :t colors.red})
+   :!   colors.red
+   :t   colors.violet})
 
 (defn- buffer-not-empty []
   (-> (vim.fn.expand "%:t")
