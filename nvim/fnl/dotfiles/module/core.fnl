@@ -7,3 +7,5 @@
 (set nvim.o.relativenumber true)
 (set nvim.o.showmatch true)
 (set nvim.o.termguicolors true)
+
+(vim.cmd "colorscheme iceberg")
