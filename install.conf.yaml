@@ -21,6 +21,7 @@
       path: tridactyl/**
       glob: true
     ~/.config/alacritty/alacritty.yml: alacritty.yml
+    ~/.config/kitty/kitty.conf: kitty.conf
     ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
 
 - install-brew: true
@@ -47,6 +48,7 @@
 
 - cask:
   - alacritty
+  - kitty
   - amethyst
   - firefox
 
