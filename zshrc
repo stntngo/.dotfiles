@@ -163,6 +163,10 @@ function t() {
 	tmux new -s $(basename $(pwd))
 }
 
+function nzf() {
+	nvim $(fzf)
+}
+
 function arcp() {
 	git checkout main && git pull origin main && arc patch $1
 }
