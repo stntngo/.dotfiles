@@ -6,4 +6,6 @@
             lsp dotfiles.module.plugins.lspconfig
             fugitive dotfiles.module.plugins.fugitive
             trouble dotfiles.module.plugins.trouble
-            lualine dotfiles.module.plugins.lualine}})
+            lualine dotfiles.module.plugins.lualine
+            bufferline dotfiles.module.plugins.bufferline
+            treesitter dotfiles.module.plugins.treesitter}})
