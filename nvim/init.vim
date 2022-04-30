@@ -11,6 +11,7 @@ Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'norcalli/nvim-colorizer.lua'
 
 " Universal Plugins
 Plug 'tpope/vim-commentary'
