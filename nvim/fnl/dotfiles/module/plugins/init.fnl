@@ -4,4 +4,5 @@
             nvim-terminal dotfiles.module.plugins.nvimterminal
             startify dotfiles.module.plugins.startify
             lsp dotfiles.module.plugins.lspconfig
-            fugitive dotfiles.module.plugins.fugitive}})
+            fugitive dotfiles.module.plugins.fugitive
+            trouble dotfiles.module.plugins.trouble}})

@@ -1,6 +1,10 @@
 (module dotfiles.module.plugins.lspconfig
   {autoload {util dotfiles.util
+             core aniseed.core
              nvim aniseed.nvim}})
+
+(defn- define-sign [[sev text]]
+    (vim.fn.sign_define sev {:texthl sev :text text :numhl sev}))
 
 (defn on-attach [client bufnr]
   (let [opts {:noremap true :silent true}
@@ -128,8 +132,17 @@
                    "*.js"
                    "*.jsx"]
          :command "lua vim.lsp.buf.formatting()"
-         :group group}))))
-    
+         :group group}))
+
+    (vim.diagnostic.config
+      {:virtual_text {:prefix "●"}})
+
+    (->> [[:DiagnosticSignError ""]
+          [:DiagnosticSignWarn  ""]
+          [:DiagnosticSignHint  ""]
+          [:DiagnosticSignInfo  ""]]
+         (core.map define-sign))))
+
 (let [(ok? fidget) (pcall #(require :fidget))]
   (when ok?
     (fidget.setup

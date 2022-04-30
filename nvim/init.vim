@@ -15,7 +15,6 @@ Plug 'tpope/vim-commentary'
 Plug 's1n7ax/nvim-terminal'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'unblevable/quick-scope'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
@@ -38,6 +37,10 @@ Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
+
+" Diagnostic
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'folke/trouble.nvim'
 
 " Language Specific Plugins
 
