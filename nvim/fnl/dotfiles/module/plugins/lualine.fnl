@@ -1,26 +1,14 @@
 (module dotfiles.module.plugins.lualine
   {require {core aniseed.core
-            nvim aniseed.nvim}})
-
+            nvim aniseed.nvim
+            colors* dotfiles.colors}})
 
 ; Lualine configuration largerly inpsired by the Eviline config 
 ; from the lualine example docs
 ; Author: shadmansaleh
 ; Credit: glepnir
 
-(local colors
-  {:bg       "#1e2132"
-   :fg       "#c6c8d1"
-   :yellow   "#e2a478"
-   :cyan     "#008080"
-   :darkblue "#91acd1"
-   :green    "#bfbe82"
-   :orange   "#e9b189"
-   :violet   "#ada0d3"
-   :magenta  "#a093c7"
-   :black    "#161821"
-   :blue     "#8fa0c6"
-   :red      "#e27878"})
+(local colors colors*.colors)
 
 (local mode-color
   {:n   colors.blue

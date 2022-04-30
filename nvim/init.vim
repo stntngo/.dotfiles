@@ -9,6 +9,7 @@ Plug 'mhinz/vim-startify'
 Plug 'cocopon/iceberg.vim'
 Plug 'shaunsingh/nord.nvim'
 Plug 'nvim-lualine/lualine.nvim'
+Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " Universal Plugins
@@ -22,13 +23,15 @@ Plug 'tpope/vim-fugitive'
 " NOTE (niels): This might causing a high amount of memory
 " usage in the go-code monorepo, so I'm going to turn it off
 " for a while.
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/playground'
 
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'j-hui/fidget.nvim'
+Plug 'nvim-lua/lsp-status.nvim'
+" Plug 'j-hui/fidget.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -89,29 +92,5 @@ Plug 'pest-parser/pest.vim'
 Plug 'gf3/peg.vim'
 
 call plug#end()
-
-" if executable('flow')
-" 	au User lsp_setup call lsp#register_server({
-" 		\ 'name': 'flow',
-" 		\ 'cmd': {server_info->['flow', 'lsp', '--from', 'vim-lsp']},
-" 		\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), '.flowconfig'))},
-" 		\ 'whitelist': ['javascript', 'javascript.jsx'],
-" 		\ })
-" endif
-
-" if executable('ocamllsp')
-" 	au User lsp_setup call lsp#register_server({
-" 		\ 'name': 'ocamllsp',
-" 		\ 'cmd': {server_info->['ocamllsp']},
-" 		\ 'whitelist': ['ocaml'],
-" 		\ })
-" endif
-
-" TODO (niels): Move these settings out of vim script and into the fennel
-" configuration as well.
-colorscheme iceberg
-set t_8f=^[[38;2;%lu;%lu;%lum
-set t_8b=^[[38;2;%lu;%lu;%lum
-let g:javascript_plugin_flow = 1
 
 lua require('aniseed.env').init()
