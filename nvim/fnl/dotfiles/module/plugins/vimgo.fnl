@@ -9,3 +9,4 @@
 (set nvim.g.go_metaliner_command "gopls")
 (set nvim.g.go_def_mapping_enabled 0)
 (set nvim.g.go_doc_keywordprg_enabled 0)
+(set nvim.g.go_fmt_autosave 0)
