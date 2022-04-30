@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.fugitive
+(module dotfiles.plugins.fugitive
   {require {util dotfiles.util}})
 
 ;; <leader>G opens fugitive buffer.

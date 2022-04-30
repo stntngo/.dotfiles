@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.todo
+(module dotfiles.plugins.todo
   {require {util dotfiles.util}})
 
 (let [todo (require :todo-comments)]

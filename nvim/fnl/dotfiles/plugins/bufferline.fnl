@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.bufferline
+(module dotfiles.plugins.bufferline
   {require {util dotfiles.util
             core aniseed.core
             colors* dotfiles.colors}})

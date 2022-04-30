@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.lspconfig
+(module dotfiles.plugins.lspconfig
   {autoload {util dotfiles.util
              core aniseed.core
              nvim aniseed.nvim}})

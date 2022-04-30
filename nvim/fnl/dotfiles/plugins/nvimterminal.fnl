@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.nvimterminal
+(module dotfiles.plugins.nvimterminal
   {require {nvim aniseed.nvim}})
 
 (let [term (require :nvim-terminal)]

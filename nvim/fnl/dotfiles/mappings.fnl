@@ -1,4 +1,4 @@
-(module dotfiles.module.mappings
+(module dotfiles.mappings
   {require {nvim aniseed.nvim
            core aniseed.core}})
 

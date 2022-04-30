@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.fzf
+(module dotfiles.plugins.fzf
   {require {util dotfiles.util}})
 
 (util.nnoremap :fzb "Buffers")

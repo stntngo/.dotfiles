@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.startify
+(module dotfiles.startify
   {require {core aniseed.core
             nvim aniseed.nvim}})
 

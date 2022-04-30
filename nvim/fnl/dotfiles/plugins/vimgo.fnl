@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.vimgo
+(module dotfiles.plugins.vimgo
   {require {core aniseed.core
             nvim aniseed.nvim}})
 

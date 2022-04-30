@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.lualine
+(module dotfiles.plugins.lualine
   {require {core aniseed.core
             nvim aniseed.nvim
             colors* dotfiles.colors}})

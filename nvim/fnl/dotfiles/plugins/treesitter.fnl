@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.treesitter
+(module dotfiles.plugins.treesitter
   {require {colors* dotfiles.colors
             core    aniseed.core
             nvim    aniseed.nvim}})

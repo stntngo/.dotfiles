@@ -1,4 +1,4 @@
-(module dotfiles.module.core
+(module dotfiles.core
   {require {nvim aniseed.nvim
             util dotfiles.util
             color dotfiles.colors}})

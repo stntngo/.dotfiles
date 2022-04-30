@@ -1,4 +1,4 @@
-(module dotfiles.module.plugins.trouble
+(module dotfiles.trouble
   {require {util dotfiles.util
             nvim aniseed.nvim}})
 
