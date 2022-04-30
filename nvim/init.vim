@@ -8,7 +8,8 @@ Plug 'mhinz/vim-startify'
 " Visuals
 Plug 'cocopon/iceberg.vim'
 Plug 'shaunsingh/nord.nvim'
-Plug 'vim-airline/vim-airline'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
 
 " Universal Plugins
 Plug 'tpope/vim-commentary'
@@ -39,7 +40,6 @@ Plug 'L3MON4D3/LuaSnip'
 Plug 'saadparwaiz1/cmp_luasnip'
 
 " Diagnostic
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'folke/trouble.nvim'
 
 " Language Specific Plugins

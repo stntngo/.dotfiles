@@ -141,7 +141,7 @@
           [:DiagnosticSignWarn  ""]
           [:DiagnosticSignHint  ""]
           [:DiagnosticSignInfo  ""]]
-         (core.map define-sign))))
+         (core.run! define-sign))))
 
 (let [(ok? fidget) (pcall #(require :fidget))]
   (when ok?
