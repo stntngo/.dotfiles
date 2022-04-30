@@ -2,6 +2,7 @@
   {require {core aniseed.core
             nvim aniseed.nvim}})
 
+
 ; Lualine configuration largerly inpsired by the Eviline config 
 ; from the lualine example docs
 ; Author: shadmansaleh
@@ -52,8 +53,6 @@
 (defn- hide-in-width []
   (> (vim.fn.winwidth 0) 80))
 
-(. mode-color (vim.fn.mode))
-
 (defn- check-git-workspace []
   (let [filepath (vim.fn.expand "%:p:h")
         gitdir (vim.fn.finddir ".git" (.. filepath ";"))]
@@ -74,7 +73,7 @@
                          core.first)]
     (if client
       client.name
-      "No active LSP")))
+      "no active LSP")))
 
 (defn- active-mode []
   {:fg (. mode-color (vim.fn.mode))})
@@ -89,22 +88,27 @@
     :theme {:normal {:c {:fg colors.fg
                          :bg colors.bg}}
             :inactive {:c {:fg colors.fg
+                           :bg colors.bg}
+                       :z {:fg colors.fg
                            :bg colors.bg}}}}
    :sections {:lualine_a []
              :lualine_b []
              :lualine_y []
-             :lualine_z ["diff"]
+             :lualine_z []
              :lualine_c [(component
                            (core.constantly "▊")
-                           {:color active-mode
+                           {:color   active-mode
                             :padding {:left 0
                                       :right 1}})
                          (component
                            "mode"
-                           {:color active-mode
+                           {:color   active-mode
+                            :fmt     string.lower
                             :padding {:right 1}})
                          (component "filename")
-                         (component "filetype")
+                         (component
+                           "filetype"
+                           {:icons_enabled false})
                          (component
                            "filesize"
                            {:cond buffer-not-empty})
@@ -113,50 +117,50 @@
                            "diagnostics"
                            {:sources [:nvim_diagnostic]
                             :symbols {:error " "
-                                      :warn " "
-                                      :info " "}
+                                      :warn  " "
+                                      :info  " "}
                             :diagnostics_color
                             {:color_error {:fg colors.red}
-                             :color_warn {:fg colors.yellow}
-                             :color_info {:fg colors.cyan}}})]
+                             :color_warn  {:fg colors.yellow}
+                             :color_info  {:fg colors.cyan}}})]
              :lualine_x [(component
                            active-lsp
-                          {:icon " LSP:"
-                           :color (fn []
+                          {:color (fn []
                                     {:fg (if (vim.lsp.buf.server_ready)
-                                           colors.green
-                                           colors.orange)})})
+                                             colors.green
+                                             colors.orange)})})
                          (component
                            "o:encoding"
-                           {:fmt string.upper
+                           {:fmt string.lower
                             :cond hide-in-width
                             :color {:fg colors.green}})
                          (component
                            "fileformat"
-                          {:fmt string.upper
+                          {:fmt string.lower
                            :icons_enabled false
                            :color {:fg colors.green}})
                          (component
                            "branch"
-                           {:icon ""
+                           {:icons_enabled false
                             :color {:fg colors.violet}})
                          (component
                            "diff"
-                           {:symbols {:added " "
-                                      :modified "柳 "
-                                      :removed: " "}})
+                           {:diff_color {:added    {:fg colors.green}
+                                         :modified {:fg colors.orange}
+                                         :removed  {:fg colors.red}}})
                          (component
                            (core.constantly "▊")
-                           {:color active-mode
+                           {:color   active-mode
                             :padding {:left 1}})]}
    :inactive_sections {:lualine_a []
                        :lualine_b []
                        :lualine_y []
-                       :lualine_z []
+                       :lualine_z [(component
+                                     "diff"
+                                     {:diff_color {:added    {:fg colors.green}
+                                                   :modified {:fg colors.orange}
+                                                   :removed  {:fg colors.red}}})]
                        :lualine_c [(component 
-                                     (fn [] (vim.fn.bufnr "%"))
-                                     {:color {:fg colors.blue}})
-                                   (component 
                                      (fn [] (vim.fn.expand "%"))
                                      {:color {:fg colors.blue}})]
                        :lualine_x []}})
