@@ -42,15 +42,20 @@
   - pyright
   - python@3.10
   - ripgrep
+  - svn
   - tmux
   - tokei
   - zig --HEAD
+
+- tap:
+  - caskroom/fonts
 
 - cask:
   - alacritty
   - kitty
   - amethyst
   - firefox
+  - font-roboto-mono-nerd-font
 
 - yarn:
   - typescript
