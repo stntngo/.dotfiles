@@ -48,7 +48,7 @@
   - zig --HEAD
 
 - tap:
-  - caskroom/fonts
+  - homebrew/cask-fonts
 
 - cask:
   - alacritty
