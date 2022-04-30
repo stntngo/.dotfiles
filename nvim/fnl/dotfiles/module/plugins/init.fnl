@@ -8,4 +8,5 @@
             trouble dotfiles.module.plugins.trouble
             lualine dotfiles.module.plugins.lualine
             bufferline dotfiles.module.plugins.bufferline
-            treesitter dotfiles.module.plugins.treesitter}})
+            treesitter dotfiles.module.plugins.treesitter
+            todo dotfiles.module.plugins.todo}})

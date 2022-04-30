@@ -1,5 +1,4 @@
-" TODO (niels): Get rid of all of this legacy vimscript and use something like
-" packer to handle packages from inside fennel.
+" TODO: (niels) Get rid of all of this legacy vimscript and use something like packer to handle packages from inside fennel.
 call plug#begin()
 
 " Global Start Menu
@@ -32,7 +31,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/lsp-status.nvim'
-" Plug 'j-hui/fidget.nvim'
+Plug 'folke/todo-comments.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'

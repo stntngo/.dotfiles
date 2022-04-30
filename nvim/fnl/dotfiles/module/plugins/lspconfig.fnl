@@ -79,7 +79,7 @@
     (lsp.clojure_lsp.setup
       {:name :clojure_lsp
        :cmd ["clojure-lsp"]
-       :whitelist [:clojure :edn]
+       :whitelist [:clojure :edn :fennel]
        :capabilities capabilities
        :on_attach on-attach})
 
@@ -101,6 +101,7 @@
       {:name :pyright
        :cmd ["pyright-langserver" "--stdio"]
        :whitelist [:python]
+       :settings {:python {:analysis {:extraPaths ["/Users/niels/.dotfiles/dotbot"]}}}
        :capabilities capabilities
        :on_attach on-attach})
 
@@ -148,11 +149,7 @@
     (fidget.setup
       {:text {:spinner :dots}})))
 
-; TODO (niels): I want to set up an abstraction
-; for safely requiring packages. So that it sends
-; a message to me when it fails to load rather 
-; than just doing throwing a red-background error
-; when things crash.
+; TODO: (niels) I want to set up an abstraction for safely requiring packages. So that it sends a message to me when it fails to load rather than just doing throwing a red-background error when things crash.
 (let [cmp (require :cmp)
       luasnip (require :luasnip)]
 
