@@ -1,11 +1,11 @@
 (module dotfiles.plugins.mini
-  {require {core aniseed.core
+  {require {core     aniseed.core
             sessions mini.sessions
-            vimp vimp}})
+            starter  mini.starter
+            vimp     vimp}})
 
 (sessions.setup
-  {:autoread true
-   :autowrite true})
+  {:autowrite true})
 
 (vimp.nnoremap
   :<leader>ss
@@ -22,3 +22,5 @@
       {:prompt "Select session to load:"}
       (fn [choice]
         (sessions.read choice)))))
+
+(starter.setup {})
