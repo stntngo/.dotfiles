@@ -164,7 +164,7 @@ function t() {
 }
 
 function nzf() {
-	nvim $(fzf)
+	nvim $(fzf -q $1)
 }
 
 function arcp() {
