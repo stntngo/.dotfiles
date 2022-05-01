@@ -23,8 +23,7 @@
                                 (string.find "code.uber.internal")
                                 core.nil?
                                 not))}]}}})
-     ; :highlights
-     ; {:buffer_selected {:guibg colors.blue
-     ;                    :guifg colors.black}}})
+
+      ; TODO:  Investigate customizing the styling of the buffer tabs.
 
   (util.nnoremap :gb :BufferLinePick))
