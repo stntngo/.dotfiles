@@ -5,4 +5,5 @@
   (set nvim.o.hidden true)
 
   (term.setup
-    {:window {:position :botright}}))
+    {:window        {:position :botright}
+     :toggle_keymap :<leader>$}))
