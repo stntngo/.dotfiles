@@ -22,6 +22,7 @@ set searchurls.gocode https://sourcegraph.uberinternal.com/search?q=repo:%5Ecode
 set searchurls.uown https://uown.uberinternal.com/search?q=%s
 set searchurls.whober https://usearch.uberinternal.com/?q=%s&t=people&utm_source=whober&utm_medium=advanced-people-search
 set searchurls.jira https://t3.uberinternal.com/browse/%s
+set searchurls.xiny https://learnxinyminutes.com/docs/%s
 
 " Custom Ex-Commands for custom search engines.
 command u open eng
@@ -29,6 +30,7 @@ command gocode open gocode
 command uown open uown
 command whober open whober
 command jira open jira
+command xiny open xiny
 
 " :godocs {repository}
 "
