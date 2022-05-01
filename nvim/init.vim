@@ -2,14 +2,19 @@
 call plug#begin()
 
 " Global Start Menu
+" XXX: Candidate for deletion. Could use mini.nvim instead.
 Plug 'mhinz/vim-startify'
 
 " Visuals
+Plug 'EdenEast/nightfox.nvim'
 Plug 'cocopon/iceberg.vim'
 Plug 'shaunsingh/nord.nvim'
+
 Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
+
+" XXX: Candidate for deletion.
 Plug 'norcalli/nvim-colorizer.lua'
 
 " Universal Plugins
@@ -17,21 +22,25 @@ Plug 'tpope/vim-commentary'
 Plug 's1n7ax/nvim-terminal'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
-" NOTE (niels): This might causing a high amount of memory
-" usage in the go-code monorepo, so I'm going to turn it off
-" for a while.
+" XXX: Do I really want to keep using this? I don't think I get that much
+" utility out of it.
+Plug 'airblade/vim-gitgutter'
+
+" NOTE: This might causing a high amount of memory usage in the go-code monorepo.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
+" XXX: Candidate for deletion. Consider replacing with telescope
 Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
 Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-lua/lsp-status.nvim'
 Plug 'folke/todo-comments.nvim'
+
+" XXX: Candidate for deletion
+Plug 'nvim-lua/lsp-status.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -51,6 +60,7 @@ Plug 'folke/trouble.nvim'
 Plug 'fatih/vim-go'
 
 " Python
+" XXX: Candidate for deletion
 Plug 'jmcantrell/vim-virtualenv'
 
 " Javascript
@@ -82,6 +92,7 @@ Plug 'jaawerth/fennel.vim'
 Plug 'PaterJason/cmp-conjure'
 
 " Misc.
+" XXX: Candidate for deletion, unless I need it to be able to edit Obsidian controlled files more easily.
 Plug 'vimwiki/vimwiki'
 Plug 'tsandall/vim-rego'
 
