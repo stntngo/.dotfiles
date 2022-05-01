@@ -11,3 +11,6 @@
 [submodule "dotbot-yarn"]
 	path = dotbot-yarn
 	url = https://github.com/duranzno/dotbot-yarn.git
+[submodule "vim-plug.git"]
+	path = vim-plug.git
+	url = https://github.com/junegunn/vim-plug.git

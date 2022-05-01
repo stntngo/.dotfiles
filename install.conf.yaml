@@ -18,7 +18,7 @@
     ~/.config/kitty/kitty.conf: kitty.conf
     ~/.gitconfig: gitconfig
     ~/.hammerspoon/init.lua: hammerspoon/init.lua
-    ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
+    ~/.local/share/nvim/site/autoload/plug.vim: "vim-plug.git/plug.vim"
     ~/.profile: profile
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
