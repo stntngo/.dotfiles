@@ -6,14 +6,8 @@
       force: true
 
 - link:
-    ~/.profile: profile
-    ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
-    ~/.gitconfig: gitconfig
-    ~/.tmux.conf: tmux.conf
-    ~/.vimrc: vimrc
-    ~/.zshenv: zshenv
-    ~/.zshrc: zshrc
+    ~/.bash_profile: bash_profile
     ~/.config/nvim/:
       path: nvim/**
       glob: true
@@ -22,7 +16,14 @@
       glob: true
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.gitconfig: gitconfig
+    ~/.hammerspoon/init.lua: hammerspoon/init.lua
     ~/.local/share/nvim/site/autoload/plug.vim: vim-plug/plug.vim
+    ~/.profile: profile
+    ~/.tmux.conf: tmux.conf
+    ~/.vimrc: vimrc
+    ~/.zshenv: zshenv
+    ~/.zshrc: zshrc
 
 - install-brew: true
 
@@ -35,6 +36,7 @@
   - elixir-ls
   - erlang
   - exa
+  - fennel
   - fzf
   - go
   - haskell-stack
@@ -47,13 +49,15 @@
   - tokei
   - zig --HEAD
 
-- tap:
-  - homebrew/cask-fonts
+# TODO: This is causing the install script to fail. I think this is because the tab has already been enabled but I'm not 100% sure.
+# - tap:
+#   - homebrew/cask-fonts
 
 - cask:
   - alacritty
-  - kitty
   - amethyst
+  - hammerspoon
+  - kitty
   - firefox
   - font-roboto-mono-nerd-font
 
