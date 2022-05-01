@@ -5,6 +5,9 @@
       create: true
       force: true
 
+- create:
+  - ~/.local/share/nvim/session
+
 - link:
     ~/.bashrc: bashrc
     ~/.bash_profile: bash_profile

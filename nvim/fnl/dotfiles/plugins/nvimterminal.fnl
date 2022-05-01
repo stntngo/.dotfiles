@@ -1,9 +1,9 @@
 (module dotfiles.plugins.nvimterminal
-  {require {nvim aniseed.nvim}})
+  {require {nvim aniseed.nvim
+            term nvim-terminal}})
 
-(let [term (require :nvim-terminal)]
-  (set nvim.o.hidden true)
+(set nvim.o.hidden true)
 
-  (term.setup
-    {:window        {:position :botright}
-     :toggle_keymap :<leader>$}))
+(term.setup
+  {:window        {:position :botright}
+   :toggle_keymap :<leader>$})

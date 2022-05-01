@@ -1,11 +1,11 @@
 (module dotfiles.trouble
   {require {util dotfiles.util
-            nvim aniseed.nvim}})
+            nvim aniseed.nvim
+            trouble trouble}})
 
-(let [trouble (require :trouble)]
-  (trouble.setup
-    {:mode :document_diagnostics
-     :icons false}))
+(trouble.setup
+  {:mode :document_diagnostics
+   :icons false})
 
 (util.leadernnoremap :xx "TroubleToggle")
 (util.leadernnoremap :xw "TroubleToggle workspace_diagnostics")

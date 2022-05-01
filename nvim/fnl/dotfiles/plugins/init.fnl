@@ -9,4 +9,5 @@
             lualine dotfiles.plugins.lualine
             bufferline dotfiles.plugins.bufferline
             treesitter dotfiles.plugins.treesitter
-            todo dotfiles.plugins.todo}})
+            todo dotfiles.plugins.todo
+            mini dotfiles.plugins.mini}})

@@ -1,6 +1,7 @@
 (module dotfiles.plugins.treesitter
   {require {colors* dotfiles.colors
             core    aniseed.core
+            treesitter nvim-treesitter.configs
             nvim    aniseed.nvim}})
 
 (local colors colors*.colors)
@@ -8,7 +9,7 @@
 (local highlights
   [])
 
-; WIP (niels): I'm thinking maybe at some point I want to stray from
+; NOTE: I'm thinking maybe at some point I want to stray from
 ; the default syntax highlighting configuration for iceberg, but man
 ; this is some tedious work. And I don't really feel like going through
 ; each setting nor do I feel exceptionally confident in the choices I'm
@@ -34,29 +35,28 @@
 ;    [:TSFuncBuiltIn colors.green]
 ;    [:TSMethod colors.darkblue]])
 
-(let [treesitter (require "nvim-treesitter.configs")]
-  (treesitter.setup
-    {:ensure_installed :all
-     :highlight {:enable true
-                 :additional_vim_regex_highlighting false}
-     :playground
-      {:enable true
-       :disable []
-       :updatetime 25
-       :persist_queries false
-       :keybindings
-        {:toggle_query_editor :o
-         :toggle_hl_groups :i
-         :toggle_injected_languages :t
-         :toggle_anonymous_nodes :a
-         :toggle_language_display :I
-         :focus_language :f
-         :unfocus_language :F
-         :update :R
-         :goto_node :<cr>
-         :show_help :?}}})
+(treesitter.setup
+  {:ensure_installed :all
+   :highlight {:enable true
+               :additional_vim_regex_highlighting false}
+   :playground
+    {:enable true
+     :disable []
+     :updatetime 25
+     :persist_queries false
+     :keybindings
+      {:toggle_query_editor :o
+       :toggle_hl_groups :i
+       :toggle_injected_languages :t
+       :toggle_anonymous_nodes :a
+       :toggle_language_display :I
+       :focus_language :f
+       :unfocus_language :F
+       :update :R
+       :goto_node :<cr>
+       :show_help :?}}})
 
-  (core.run!
-    (fn [[group color]]
-      (vim.highlight.create group {:guifg color}))
-      highlights))
+(core.run!
+  (fn [[group color]]
+    (vim.highlight.create group {:guifg color}))
+    highlights)

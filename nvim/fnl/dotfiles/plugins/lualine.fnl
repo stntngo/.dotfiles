@@ -1,6 +1,7 @@
 (module dotfiles.plugins.lualine
   {require {core aniseed.core
             nvim aniseed.nvim
+            lualine lualine
             colors* dotfiles.colors}})
 
 ; Lualine configuration largerly inpsired by the Eviline config 
@@ -153,5 +154,4 @@
                                      {:color {:fg colors.blue}})]
                        :lualine_x []}})
 
-(let [lualine (require :lualine)]
-  (lualine.setup config))
+(lualine.setup config)

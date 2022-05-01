@@ -2,8 +2,8 @@
 call plug#begin()
 
 " Global Start Menu
-" XXX: Candidate for deletion. Could use mini.nvim instead.
-Plug 'mhinz/vim-startify'
+Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
+Plug 'svermeulen/vimpeccable'
 
 " Visuals
 Plug 'EdenEast/nightfox.nvim'
@@ -23,10 +23,6 @@ Plug 's1n7ax/nvim-terminal'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'tpope/vim-fugitive'
-
-" XXX: Do I really want to keep using this? I don't think I get that much
-" utility out of it.
-Plug 'airblade/vim-gitgutter'
 
 " NOTE: This might causing a high amount of memory usage in the go-code monorepo.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
