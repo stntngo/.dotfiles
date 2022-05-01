@@ -4,7 +4,8 @@
 
 (let [trouble (require :trouble)]
   (trouble.setup
-    {:mode :document_diagnostics}))
+    {:mode :document_diagnostics
+     :icons false}))
 
 (util.leadernnoremap :xx "TroubleToggle")
 (util.leadernnoremap :xw "TroubleToggle workspace_diagnostics")
