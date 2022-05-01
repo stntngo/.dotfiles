@@ -1,6 +1,6 @@
 (module dotfiles.core
-  {require {nvim aniseed.nvim
-            util dotfiles.util
+  {require {nvim  aniseed.nvim
+            util  dotfiles.util
             color dotfiles.colors}})
 
 (set nvim.o.mousehide true)
@@ -13,7 +13,4 @@
 (let [colorizer (require :colorizer)]
   (colorizer.setup))
 
-(vim.cmd "colorscheme iceberg")
-
-(vim.highlight.create :Search {:guibg color.colors.blue
-                               :guifg color.colors.black})
+(vim.cmd "colorscheme nordfox")
