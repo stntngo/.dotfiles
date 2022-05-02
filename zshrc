@@ -171,6 +171,77 @@ function arcp() {
 	git checkout main && git pull origin main && arc patch $1
 }
 
+if [[ -t 1 ]]
+then
+  tty_escape() { printf "\033[%sm" "$1"; }
+else
+  tty_escape() { :; }
+fi
+
+tty_mkbold() { tty_escape "1;$1"; }
+tty_underline="$(tty_escape "4;39")"
+tty_blue="$(tty_mkbold 34)"
+tty_red="$(tty_mkbold 31)"
+tty_green="$(tty_mkbold 32)"
+tty_orange="$(tty_mkbold 33)"
+tty_bold="$(tty_mkbold 39)"
+tty_reset="$(tty_escape 0)"
+
+info() {
+	printf "${tty_blue}==>${tty_bold} %s${tty_reset} %s\n" $1 $2
+}
+
+error() {
+	printf "${tty_red}Error:${tty_bold} %s\n" $1
+}
+
+function worktree() {
+	local WORKTREE="$UBER_HOME/go-code-worktrees/$1"
+	local GOCODE="$HOME/go-code"
+	local PKG="src/code.uber.internal/$2"
+
+	cd $GOCODE &> /dev/null
+
+	info "Updating go-code" $GOCODE
+	if ! git checkout main &> /dev/null
+	then
+		error "Failed to checkout main"
+		return 1
+	fi
+	
+	if ! git pull origin main &> /dev/null
+	then
+		error "Failed to pull origin main"
+		return 1
+	fi
+
+	info "Creating new worktree" $WORKTREE
+	if ! $GOCODE/bin/git-bzl new $GOCODE $WORKTREE $PKG &> /dev/null
+	then
+		error "Failed to create new worktree"
+		return 1
+	fi
+
+	info "Copying .envrc.local" "$WORKTREE/.envrc.local"
+	if ! cp .envrc.local "$WORKTREE/.envrc.local" &> /dev/null
+	then
+		error "Failed to copy .envrc.local"
+		return 1
+	fi
+
+	info "Enabling .envrc" ""
+	if ! direnv allow "$WORKTREE/.envrc" &> /dev/null
+	then 
+		error "Failed to enable .envrc"
+		return 1
+	fi
+
+	cd "$WORKTREE" &> /dev/null
+
+	info "Running setup-gopath" "//$PKG/..."
+	$WORKTREE/bin/setup-gopath "//$PKG/..."
+}
+
 eval "$(fasd --init auto)"
 
 # opam configuration

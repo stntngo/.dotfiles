@@ -7,6 +7,7 @@
 
 - create:
   - ~/.local/share/nvim/session
+  - ~/Uber/go-code-worktrees
 
 - link:
     ~/.bashrc: bashrc
