@@ -26,4 +26,5 @@
 
 ; TODO:  Investigate customizing the styling of the buffer tabs.
 
-(util.nnoremap :gb :BufferLinePick)
+(util.leadernnoremap :bp :BufferLinePick)
+(util.leadernnoremap :bc :BufferLinePickClose)

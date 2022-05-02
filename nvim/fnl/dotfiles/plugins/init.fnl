@@ -10,5 +10,6 @@
             bufferline    dotfiles.plugins.bufferline
             treesitter    dotfiles.plugins.treesitter
             todo          dotfiles.plugins.todo
-	    dressing      dotfiles.plugins.dressing
+            dressing      dotfiles.plugins.dressing
+            phabricator   dotfiles.plugins.phabricator
             mini          dotfiles.plugins.mini}})
