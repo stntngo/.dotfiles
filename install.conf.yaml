@@ -41,6 +41,7 @@
   - exa
   - fennel
   - fzf
+  - fd
   - go
   - haskell-stack
   - leiningen

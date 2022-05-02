@@ -14,9 +14,6 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
-" XXX: Candidate for deletion.
-Plug 'norcalli/nvim-colorizer.lua'
-
 " Universal Plugins
 Plug 'tpope/vim-commentary'
 Plug 's1n7ax/nvim-terminal'
@@ -28,11 +25,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
-" XXX: Candidate for deletion. Consider replacing with telescope
-Plug 'junegunn/fzf', {'do': {-> fzf#install()}}
-Plug 'junegunn/fzf.vim'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'stevearc/dressing.nvim'
 Plug 'folke/todo-comments.nvim'
 
 " XXX: Candidate for deletion
