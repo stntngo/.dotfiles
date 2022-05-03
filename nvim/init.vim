@@ -1,7 +1,6 @@
 " TODO: (niels) Get rid of all of this legacy vimscript and use something like packer to handle packages from inside fennel.
 call plug#begin()
 
-" Global Start Menu
 Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 Plug 'svermeulen/vimpeccable'
 
@@ -15,11 +14,13 @@ Plug 'akinsho/bufferline.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
 " Universal Plugins
+Plug 'direnv/direnv.vim'
 Plug 'tpope/vim-commentary'
 Plug 's1n7ax/nvim-terminal'
 
 Plug 'neovim/nvim-lspconfig'
 Plug 'tpope/vim-fugitive'
+Plug 'mbbill/undotree'
 
 " NOTE: This might causing a high amount of memory usage in the go-code monorepo.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
