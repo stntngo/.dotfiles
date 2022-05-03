@@ -8,7 +8,6 @@
 (vimp.nnoremap :fzf builtin.fd)               ; Search files
 (vimp.nnoremap :fzrg builtin.live_grep)       ; Search Lines
 (vimp.nnoremap :<leader>Gt builtin.git_stash) ; Search Git Stashes
-(vimp.nnoremap :<leader>Gw telescope.extensions.git_worktree.git_worktrees)
 
 (vimp.nnoremap 
   :fzd 
