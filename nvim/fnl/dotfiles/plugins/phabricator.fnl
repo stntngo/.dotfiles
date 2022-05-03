@@ -5,193 +5,225 @@
             job  plenary.job
             vimp vimp}})
 
-; job:new
-; (vim.inspect job:new)
+(defn- range [lo hi]
+  "Eagerly returns a list of numbers from lo to hi, inclusive"
+  (if (= lo hi)
+    [lo]
+    (core.concat [lo] (range (core.inc lo) hi))))
 
-; local Job = require'plenary.job'
+(local charset
+    (core.map
+    (fn [x]
+      (string.char x))
+    (core.concat
+      (range 48 57)
+      (range 75 90)
+      (range 97 122))))
 
-; Job:new({
-;   command = 'rg',
-;   args = { '--files' },
-;   cwd = '/usr/bin',
-;   env = { ['a'] = 'b' },
-;   on_exit = function(j, return_val)
-;     print(return_val)
-;     print(j:result())
-;   end,
-; }):sync() -- or start()
+(local diff-template "Summary: 
 
-; local job = Job:new {
-;         command = "cat",
+Test Plan: 
 
-;         on_stdout = function(_, data)
-;           table.insert(results, data)
-;         end,
-;       }
+Reviewers: 
 
-;       job:start()
-;       job:send "hello\n"
-;       job:send "world\n"
-;       job:shutdown()
+Subscribers: 
 
-; (local test-table {})
+Tags: 
 
-; (table.insert test-table 2)
+Revert Plan: 
 
-; (nvim.create_buf true true)
+JIRA Issues: 
 
-; (let [win (nvim.get_current_win)
-;       buf (nvim.create_buf true true)
-;       results {}
-;       cat (job:new
-;             {:command :rg
-;              :args ["--files"]
-;              :cwd "/Users/niels/go-code"
-;              :on_stdout (vim.schedule_wrap
-;                           (fn [_ data]
-;                             (vim.fn.appendbufline buf :$ data)))})]
-;   (nvim.win_set_buf win buf)
-;   (cat:start)
-;   (cat:wait))
+API Changes: 
 
-; test-table
+Monitoring and Alerts:
+")
 
+(local diff-separator "# ------------------------ >8 ------------------------")
 
-; local Job = require'plenary.job'
+(defn- is-diff-separator? [x] (= x diff-separator))
 
-; Job:new({
-;   command = 'rg',
-;   args = { '--files' },
-;   cwd = '/usr/bin',
-;   env = { ['a'] = 'b' },
-;   on_exit = function(j, return_val)
-;     print(return_val)
-;     print(j:result())
-;   end,
-; }):sync() -- or start()
+(defn- reverse [xs]
+  "Eagerly reverse the elements of a list"
+  (when (not (core.empty? xs))
+    (core.concat [(core.last xs)]
+                 (reverse (core.butlast xs)))))
 
-; vim.
+(defn- take [xs n]
+  "Eagerly construct a new list of up to the first n elements of a provided list"
+  (when (and (> n 0)
+             (not (core.empty? xs)))
+    (core.concat [(core.first xs)]
+                  (take (core.rest xs) (core.dec n)))))
 
-; (let [rg (job:new
-;   {:command :rg
-;    :args ["--files"]
-;    :cwd "/usr/bin"
-;    :on_stdout (vim.schedule_wrap (fn [_ data]
-;                 (vim.notify data)))
-;    :on_stderr (vim.schedule_wrap (fn [_ data]
-;                 (vim.notify data))))]
-;    rg)
-;    (rg:sync (* 60 1000)))
+(defn- take-while [xs pred]
+  ; TODO: Write docstring
+  (let [x  (core.first xs)
+        xs (core.rest xs)]
+    (when (pred x)
+      (core.concat [x]
+                   (take-while xs pred)))))
 
-; (let [loop vim.loop
-;       stdout (loop.new_pipe false)
-;       stderr (loop.new_pipe false)
-;       handle (loop.spawn
-;                :rg
-;                {:args ["loop"
-;                        "--vimgrep"
-;                        "--smart-case"
-;                        "--block"]
-;                 :stdio [nil stdout stderr]}
-;                (fn [x y]
-;                  (stdout:read_stop)
-;                  (stderr:read_stop)
-;                  (stdout:close)
-;                  (stderr:close)
-;                  (handle:close)
-;                  (print x)
-;                  (print y)))]
-;   (loop.read_start stdout (fn [x y]
-;                             (print x)
-;                             (print y)))
-;   (loop.read_start stderr (fn [x y]
-;                             (print x)
-;                             (print y))))
+(defn- rand-str [len]
+  "Generates a random alphanumeric string of the specified length"
+  (if (= 0 len)
+    ""
+    (.. (. charset (math.random 1 (length charset)))
+        (rand-str (core.dec len)))))
 
+(defn- get-tmp-dir []
+  "Returns the operating system's configured temporary file
+   directory, defaulting to /tmp/ if $TMPDIR is unconfigured."
+   (or (os.getenv :TMPDIR)
+       "/tmp/"))
 
-; (local loop vim.loop)
-; (local api vim.api)
+(defn- tmp-diff []
+  "Generate a new DIFF_EDITMSG file path in the system's
+   temporary file directory"
 
-; (let [shortname (vim.fn.expand "%:t:r")
-;       fullname (nvim.buf_get_name 0)]
-;   (print shortname)
-;   (print fullname))
+  ; TODO: Store DIFF_EDITMSG local to git repo.
+  ;
+  ; It could be nice to store the DIFF_EDITMSG inside
+  ; of the git repo's .arcconfig directory, similar 
+  ; to the way that COMMIT_EDITMSG is created and 
+  ; stored inside of the repo's .git directory.
+  ;
+  ; The only downside there is that I'll have to
+  ; manage the lifetime of this file myself rather.
+  (.. (get-tmp-dir) "DIFF_EDITMSG" (rand-str 8)))
 
+(defn- append-to-buffer [win buf]
+  (fn [_ data]
+    (vim.schedule
+      (fn []
+        (vim.fn.appendbufline buf :$ data)
+        (when (= (nvim.get_current_buf) buf)
+          (nvim.win_set_cursor
+            win
+            [(nvim.buf_line_count buf) 0]))))))
 
+(defn- submit-arc-diff [path]
+  (nvim.command "topleft new")
+  (let [win (nvim.get_current_win)
+        buf (nvim.get_current_buf)
+        j (job:new
+            {:command :arc
+             :args ["diff" "--create" "-F" path]
+             :on_stdout (append-to-buffer win buf)})]
+    (j:start)))
 
-; (defn- range [lo hi]
-;   (if (= lo hi)
-;     [lo]
-;     (core.concat [lo] (range (core.inc lo) hi))))
+(defn- git-commit-history []
+  (let [j (job:new
+            {:command :git
+             :args ["log" "--pretty=oneline"]})]
+    (j:start)
+    (j:wait)
+    (if (= j.code 0)
+        (j:result)
+        nil)))
 
-; (local charset
-;   (core.map
-;     (fn [x]
-;       (string.char x))
-;     (core.concat
-;       (range 48 57)
-;       (range 75 90)
-;       (range 97 122))))
+(defn- git-commit-head []
+  (let [j (job:new
+            {:command :git
+             :args [:rev-parse :HEAD]})]
+    (j:start)
+    (j:wait)
+    (if (= j.code 0)
+        (core.first (j:result))
+        nil)))
 
-; (defn- rand-str [len]
-;   (if (= 0 len)
-;     ""
-;     (.. (. charset (math.random 1 (length charset)))
-;         (rand-str (core.dec len)))))
+(defn- git-diff [a b]
+  (let [j (job:new
+            {:command :git
+             :args [:diff a b]})]
+    (j:start)
+    (j:wait)
+    (j:result)))
 
-; (defn- tmp-diff []
-;   (.. "/tmp/diff-" (rand-str 8)))
+(defn- git-ancestry-path [a b]
+  (let [j (job:new
+            {:command :git
+             :args [:log "--oneline" (.. a ".." b)]})]
+    (j:start)
+    (j:wait)
+    (j:result)))
 
-; (defn- arc-diff-command [path]
-;   {:command :arc
-;    :args    ["diff" "--create" "-F" path]
-;    :on_exit (fn [j ret]
-;               (print j)
-;               (print ret))})
+(defn- select-base-commit []
+  (let [commits (git-commit-history)
+        result {}]
+    (when commits
+      (vim.ui.select
+        (-> commits
+            core.rest
+            (take 10))
+        {:prompt "Select a base git commit"}
+        (fn [choice]
+          (table.insert result choice))))
+    (-> result
+        core.first
+        (astr.split " ")
+        core.first)))
 
-; (defn- arc-cb [path]
-;   (fn []
-;     (let [p (-> path
-;                 arc-diff-command
-;                 job:new)]
-;       (p:sync))))
+(defn- remove-diff [lines]
+  "Remove all lines from the diff body following the diff separator.
+   Any line remaining above the diff line separator will be part of
+   the diff body visible on phabricator. So be careful what you incldue."
+  (-> lines
+      (take-while 
+        (fn [line]
+          (not (is-diff-separator? line))))))
 
-; (local diff-template "Summary: 
+(defn diff-create []
+    ; TODO: See if there is an existing diff message... somehow...
+    (vim.ui.input
+      {:prompt "Enter Diff Title: "}
+      (fn [title]
+        (nvim.command "topleft new")
+        (let [base-commit (select-base-commit)
+              head        (git-commit-head)
+              line-diff   (git-diff head base-commit)
+              hack        (tmp-diff)
+              template    (core.concat
+                            [title ""]
+                            (astr.split diff-template "\n")
+                            [diff-separator
+                             "# Do not modify or remove the line above."
+                             "# Everything below it will be ignored."
+                             "#"
+                             (.. "# Clean File Location: " hack)
+                             "#"
+                             "# Please fill out the diff template for your revision. Lines starting"
+                             "# with '#' will be ignored, and an empty message aborts the diff."     ; XXX: Does it though?
+                             "# NOTE: This diff template is hardcoded and may not reflect all custom fields"
+                             "# configured by the application administrators."
+                             "#"
+                             "# Commits to be included:"
+                             "#"]
+                            (->> (git-ancestry-path base-commit head)
+                                 (core.map
+                                   (fn [commit]
+                                     (.. "#\t" commit)))) 
+                            line-diff)
+              win (nvim.get_current_win)
+              buf (nvim.get_current_buf)
+              path (tmp-diff)]
 
-; Test Plan: 
+          (nvim.create_autocmd
+            :BufWritePre
+            {:buffer buf
+             :callback (fn []
+                         (let [ppath (require :plenary.path)
+                               f (ppath:new hack)
+                               filtered (-> (vim.api.nvim_buf_get_lines buf 0 -1 false)
+                                            (take-while (fn [x] (not (is-diff-separator? x)))))
+                               payload (astr.join "\n" filtered)]
+                           (f:write payload :w)
+                           (submit-arc-diff hack)))})
 
-; Reviewers: 
+          (nvim.buf_set_option buf :swapfile false)
+          (nvim.buf_set_option buf :filetype :gitcommit)
 
-; Subscribers: 
+          (vim.api.nvim_buf_set_name buf path)
+          (vim.api.nvim_buf_set_lines buf 0 -1 false template)))))
 
-; Tags: 
-
-; Revert Plan: 
-
-; JIRA Issues: 
-
-; API Changes: 
-
-; Monitoring and Alerts:")
-
-; (defn diff-create []
-;   (let [win (nvim.get_current_win)
-;         buf (nvim.create_buf true false)
-;         path (tmp-diff)]
-;     (vim.api.nvim_buf_set_name buf path)
-;     (nvim.create_autocmd
-;       :BufLeave
-;       {:buffer buf
-;        :once true
-;        :callback (arc-cb path)})
-
-;     ; TODO: Search to see if there is an existing diff message open.
-;     (vim.ui.input
-;       {:prompt "Enter Diff Title: "}
-;       (fn [title]
-;         (let [template (.. title "\n\n" diff-template)]
-;           (vim.api.nvim_buf_set_lines buf 0 -1 false (astr.split template "\n"))
-;           (nvim.win_set_buf win buf))))))
-
-; (set vimp.always_override true)
-; (vimp.nnoremap :<leader>ad diff-create)
+(vimp.nnoremap :<leader>ad diff-create)
