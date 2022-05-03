@@ -26,5 +26,11 @@
 
 ; TODO:  Investigate customizing the styling of the buffer tabs.
 
+; XXX: Ensure consistency with vim grammar.
+;
+; I want to keep the typical vim grammar for these and I feel
+; like I've managed that with <leader>bd to close a buffer, just
+; like the :bd buffer ex-command itself. But <leader>bp to switch
+; and choose a buffer seems wrong, what does [p]ick mean?
 (util.leadernnoremap :bp :BufferLinePick)
-(util.leadernnoremap :bc :BufferLinePickClose)
+(util.leadernnoremap :bd :BufferLinePickClose)
