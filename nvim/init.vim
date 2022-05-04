@@ -1,20 +1,37 @@
-" TODO: (niels) Get rid of all of this legacy vimscript and use something like packer to handle packages from inside fennel.
+" TODO: Migrate to Lua
+" Get rid of all of this legacy vimscript and use something like packer to handle 
+" packages from inside fennel.
 call plug#begin()
 
+" Offers general "mini" versions of other more full featured
+" plugins. Currently I'm only leveraging the sessions functionality and
+" barely scratching the surface of the start functionality.
 Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
+
+" Lets you write your bindings natively in Lua and avoid the awkwardness of
+" vim.api.nvim_set_keymap("n", "gg", "<cmd>lua require('package').function()<cr>"
 Plug 'svermeulen/vimpeccable'
 
-" Visuals
+" Themes and Icons
 Plug 'EdenEast/nightfox.nvim'
 Plug 'cocopon/iceberg.vim'
 Plug 'shaunsingh/nord.nvim'
-
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'akinsho/bufferline.nvim'
+Plug 'kdheepak/monochrome.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 
-" Universal Plugins
+" Lua powered status line, very easy to configure and extend.
+Plug 'nvim-lualine/lualine.nvim'
+
+" Lua powered buffer "tabs" to offer quick, targeted switching between them. I
+" don't know how much I actually like the buffer tab functionality or whether
+" it'd be better to just use telescope for all my buffer switching needs.
+Plug 'akinsho/bufferline.nvim'
+
+" Automatically source .envrc files when moving around the file system. This
+" package is extra helpful inside of neovide which I haven't been able to 
 Plug 'direnv/direnv.vim'
+
+" XXX: Candidate for deletion. Just use mini.comment instead.
 Plug 'tpope/vim-commentary'
 Plug 's1n7ax/nvim-terminal'
 
@@ -29,11 +46,11 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'stevearc/dressing.nvim'
+Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'folke/todo-comments.nvim'
 
 " XXX: Candidate for deletion
-Plug 'nvim-lua/lsp-status.nvim'
+Plug 'stevearc/dressing.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -50,11 +67,8 @@ Plug 'folke/trouble.nvim'
 " Language Specific Plugins
 
 " Go
+" TODO: Look into ray-x/go.nvim as a lua-based replacement.
 Plug 'fatih/vim-go'
-
-" Python
-" XXX: Candidate for deletion
-Plug 'jmcantrell/vim-virtualenv'
 
 " Javascript
 Plug 'pangloss/vim-javascript'
@@ -83,11 +97,6 @@ Plug 'Olical/conjure'
 Plug 'Olical/aniseed'
 Plug 'jaawerth/fennel.vim'
 Plug 'PaterJason/cmp-conjure'
-
-" Misc.
-" XXX: Candidate for deletion, unless I need it to be able to edit Obsidian controlled files more easily.
-Plug 'vimwiki/vimwiki'
-Plug 'tsandall/vim-rego'
 
 " Parsing
 Plug 'killphi/vim-ebnf'
