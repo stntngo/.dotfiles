@@ -7,6 +7,8 @@
 (sessions.setup
   {:autowrite true})
 
+; <leader>ss prompts the user for a session name and stores the current
+; session in the configured session directory under the given name.
 (vimp.nnoremap
   :<leader>ss
   (fn []
@@ -14,6 +16,9 @@
       {:prompt "Enter new session name: "}
       sessions.write)))
 
+; <leader>so prompts the user to select a session from the list of
+; detected sessions. The selected session is loaded into the current
+; window.
 (vimp.nnoremap
   :<leader>so
   (fn []
@@ -21,6 +26,7 @@
       (core.keys sessions.detected)
       {:prompt "Select session to load:"}
       (fn [choice]
-        (sessions.read choice)))))
+        (when choice
+          (sessions.read choice))))))
 
 (starter.setup {})

@@ -139,7 +139,7 @@
                "*.tsx"
                "*.js"
                "*.jsx"]
-     :command "lua vim.lsp.buf.formatting()"
+     :command "lua vim.lsp.buf.formatting_sync(nil, 500)"
      :group group}))
 
 (vim.diagnostic.config
