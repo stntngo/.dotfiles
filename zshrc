@@ -160,7 +160,14 @@ export PATH="$HOME/.poetry/bin:$PATH"
 alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
 
 function t() {
-	tmux new -s $(basename $(pwd))
+	session=$(basename $(pwd))
+	clean_session=$(tr -c "[:alnum:]" "_" <<< "$session")
+	if ! tmux has-session -t $clean_session > /dev/null
+	then
+		tmux new -s $clean_session
+	else
+		tmux attach -t $clean_session
+	fi
 }
 
 function nzf() {
