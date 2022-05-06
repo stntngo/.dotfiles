@@ -6,9 +6,9 @@
 (set nvim.g.mapleader ",")
 (set nvim.g.maplocalleader "\\")
 
-; Both <esc> and jk will pop the terminal back out to normal mode
+; Both <esc> and jj will pop the terminal back out to normal mode
 (vimp.tnoremap :<esc> :<c-\><c-n>)
-(vimp.tnoremap :jk :<c-\><c-n>)
+(vimp.tnoremap :jj :<c-\><c-n>)
 
 ; jj in insert mode for quickly getting back to normal mode. 
 (vimp.inoremap :jj :<esc>)
