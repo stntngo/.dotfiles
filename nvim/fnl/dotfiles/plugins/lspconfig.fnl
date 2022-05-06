@@ -120,6 +120,24 @@
    :capabilities capabilities
    :on_attach on-attach})
 
+; efm-langserver is a generic language server that can run any
+; commands when responding to specific LSP API calls. It provides
+; a nice interface for adding document formatting and extra linters
+; that aren't bundled into a language's LSP already.
+(lsp.efm.setup
+  {:name :efm
+   :init_options {:documentFormatting true}
+   :whitelist [:python]
+   :capabilities capabilities
+   :on_attach on-attach
+   :settings
+    {:rootMarkers [".git/"]
+     :version 2
+     :lintDebounce 1000
+     :languages {:python 
+                 [{:formatCommand "black --fast -"
+                   :formatStdin true}]}}})
+
 (let [group (nvim.create_augroup
               :language-server
               {:clear true})]
@@ -138,7 +156,8 @@
                "*.ts"
                "*.tsx"
                "*.js"
-               "*.jsx"]
+               "*.jsx"
+               "*.py"]
      :command "lua vim.lsp.buf.formatting_sync(nil, 500)"
      :group group}))
 
