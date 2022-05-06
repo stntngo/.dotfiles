@@ -20,6 +20,7 @@
       glob: true
     ~/.config/alacritty/alacritty.yml: alacritty.yml
     ~/.config/kitty/kitty.conf: kitty.conf
+    ~/.direnvrc: direnvrc
     ~/.gitconfig: gitconfig
     ~/.hammerspoon/init.lua: hammerspoon/init.lua
     ~/.local/share/nvim/site/autoload/plug.vim: "vim-plug.git/plug.vim"
@@ -31,11 +32,15 @@
 
 - install-brew: true
 
+# TODO: neovim itself is not managed here. I would like to install it from source.
+
 - brew:
   - babashka
   - bat
+  - black
   - clojure
   - direnv
+  - efm-langserver
   - elixir
   - elixir-ls
   - erlang
@@ -46,6 +51,7 @@
   - go
   - haskell-stack
   - leiningen
+  - neofetch
   - pyright
   - python@3.10
   - ripgrep
@@ -57,11 +63,13 @@
 # TODO: This is causing the install script to fail. I think this is because the tab has already been enabled but I'm not 100% sure.
 # - tap:
 #   - homebrew/cask-fonts
+#
 
 - cask:
   - alacritty
   - amethyst
   - hammerspoon
+  - keycastr
   - kitty
   - firefox
   - font-roboto-mono-nerd-font
