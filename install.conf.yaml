@@ -7,6 +7,7 @@
 
 - create:
   - ~/.local/share/nvim/session
+  - ~/.intheam
   - ~/Uber/go-code-worktrees
 
 - link:
@@ -29,6 +30,10 @@
     ~/.vimrc: vimrc
     ~/.zshenv: zshenv
     ~/.zshrc: zshrc
+    ~/.taskrc: taskrc
+    ~/.intheam:
+      path: secret/intheam/**
+      glob: true
 
 - install-brew: true
 
@@ -59,11 +64,14 @@
   - tmux
   - tokei
   - zig --HEAD
+  - task
+  - taskwarrior-tui
+  - zoxide
+  - spotify-tui
 
 # TODO: This is causing the install script to fail. I think this is because the tab has already been enabled but I'm not 100% sure.
 # - tap:
 #   - homebrew/cask-fonts
-#
 
 - cask:
   - alacritty

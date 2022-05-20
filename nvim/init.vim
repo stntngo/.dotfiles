@@ -10,7 +10,6 @@ Plug 'echasnovski/mini.nvim', { 'branch': 'stable' }
 
 " Lets you write your bindings natively in Lua and avoid the awkwardness of
 " vim.api.nvim_set_keymap("n", "gg", "<cmd>lua require('package').function()<cr>"
-Plug 'svermeulen/vimpeccable'
 
 " Themes and Icons
 Plug 'EdenEast/nightfox.nvim'
@@ -33,11 +32,17 @@ Plug 'direnv/direnv.vim'
 
 " XXX: Candidate for deletion. Just use mini.comment instead.
 Plug 'tpope/vim-commentary'
+" XXX: Candidate for deletion.
+" Have switched uses of the terminal to toggleterm.
 Plug 's1n7ax/nvim-terminal'
 
 Plug 'neovim/nvim-lspconfig'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+
 Plug 'tpope/vim-fugitive'
 Plug 'mbbill/undotree'
+Plug 'akinsho/toggleterm.nvim'
 
 " NOTE: This might causing a high amount of memory usage in the go-code monorepo.
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -46,6 +51,7 @@ Plug 'nvim-treesitter/playground'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'folke/todo-comments.nvim'
 

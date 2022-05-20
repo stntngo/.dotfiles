@@ -9,30 +9,21 @@
 ; Set up per-buffer configuration for the LSP. Right now everything uses the 
 ; same configuration but there's no reason that will remain true into the future.
 (defn on-attach [client bufnr]
-  (let [opts {:noremap true :silent true}
-        buf-set-keymap (fn [from scope to]
-                         (nvim.buf_set_keymap 
-                           bufnr 
-                           :n 
-                           from 
-                           (.. "<cmd>lua vim.lsp." scope "." to "()<cr>")
-                           opts))
-        buf-set-option (fn [key val]
-                         (nvim.buf_set_option bufnr key val))]
+  (let [opts           {:noremap true :silent true :buffer bufnr}]
 
-    (buf-set-option :omnifunc "v:lua.vim.lsp.omnifunc")
+    (nvim.buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
 
-    (buf-set-keymap :gd :buf :definition)
-    (buf-set-keymap :gD :buf :declaration)
-    (buf-set-keymap :gr :buf :references)
-    (buf-set-keymap :gi :buf :implementation)
-    (buf-set-keymap :K :buf :hover)
-    (buf-set-keymap :<c-k> :buf :signature_help)
-    (buf-set-keymap :<leader>rn :buf :rename)
-    (buf-set-keymap :<leader>lf :buf :formatting)
+    (vim.keymap.set :n :gd vim.lsp.buf.definition opts)
+    (vim.keymap.set :n :gD vim.lsp.buf.declaration opts)
+    (vim.keymap.set :n :gr vim.lsp.buf.references opts)
+    (vim.keymap.set :n :gi vim.lsp.buf.implementation opts)
+    (vim.keymap.set :n :K  vim.lsp.buf.hover opts)
+    (vim.keymap.set :n :<c-k> vim.lsp.buf.signature_help opts)
+    (vim.keymap.set :n :<leader>rn vim.lsp.buf.rename opts)
+    (vim.keymap.set :n :<leader>lf vim.lsp.buf.formatting opts)
 
-    (nvim.buf_set_keymap bufnr :n :<c-n> "<cmd>lua vim.diagnostic.goto_prev()<cr>" opts)
-    (nvim.buf_set_keymap bufnr :n :<c-p> "<cmd>lua vim.diagnostic.goto_next()<cr>" opts)))
+    (vim.keymap.set :n :<c-n> vim.diagnostic.goto_prev opts)
+    (vim.keymap.set :n :<c-p> vim.diagnostic.goto_next opts)))
 
 ; Define the common capabilities of the nvim lsp client in order to provide the
 ; LSP servers with all of the features the native nvim client is capable of
@@ -124,19 +115,19 @@
 ; commands when responding to specific LSP API calls. It provides
 ; a nice interface for adding document formatting and extra linters
 ; that aren't bundled into a language's LSP already.
-(lsp.efm.setup
-  {:name :efm
-   :init_options {:documentFormatting true}
-   :whitelist [:python]
-   :capabilities capabilities
-   :on_attach on-attach
-   :settings
-    {:rootMarkers [".git/"]
-     :version 2
-     :lintDebounce 1000
-     :languages {:python 
-                 [{:formatCommand "black --fast -"
-                   :formatStdin true}]}}})
+; (lsp.efm.setup
+;   {:name :efm
+;    :init_options {:documentFormatting true}
+;    :whitelist [:python]
+;    :capabilities capabilities
+;    :on_attach on-attach
+;    :settings
+;     {:rootMarkers [".git/"]
+;      :version 2
+;      :lintDebounce 1000
+;      :languages {:python 
+;                  [{:formatCommand "black --fast -"
+;                    :formatStdin true}]}}})
 
 (let [group (nvim.create_augroup
               :language-server

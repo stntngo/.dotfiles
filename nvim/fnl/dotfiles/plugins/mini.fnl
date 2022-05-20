@@ -2,14 +2,16 @@
   {require {core     aniseed.core
             sessions mini.sessions
             starter  mini.starter
-            vimp     vimp}})
+            surround mini.surround}})
 
 (sessions.setup
   {:autowrite true})
 
+(surround.setup {})
+
 ; <leader>ss prompts the user for a session name and stores the current
 ; session in the configured session directory under the given name.
-(vimp.nnoremap
+(vim.keymap.set :n
   :<leader>ss
   (fn []
     (vim.ui.input
@@ -19,7 +21,7 @@
 ; <leader>so prompts the user to select a session from the list of
 ; detected sessions. The selected session is loaded into the current
 ; window.
-(vimp.nnoremap
+(vim.keymap.set :n
   :<leader>so
   (fn []
     (vim.ui.select
@@ -29,4 +31,7 @@
         (when choice
           (sessions.read choice))))))
 
-(starter.setup {})
+; TODO: I don't like the default searching functionality for the starter
+; page. I'd like to eventually use the starter page with my own
+; configuration but as of right now I don't like what it has to offer.
+; (starter.setup {})

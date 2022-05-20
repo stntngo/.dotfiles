@@ -104,7 +104,6 @@ source $ZSH/oh-my-zsh.sh
 export BAT_THEME="Nord"
 
 if [[ $EDITOR = "" ]]; then
-	echo "setting nvim as editor"
 	export EDITOR="nvim"
 fi
 
@@ -249,7 +248,7 @@ function worktree() {
 	$WORKTREE/bin/setup-gopath "//$PKG/..."
 }
 
-eval "$(fasd --init auto)"
+eval "$(zoxide init zsh)"
 
 # opam configuration
 [[ ! -r /Users/niels/.opam/opam-init/init.zsh ]] || source /Users/niels/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

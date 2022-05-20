@@ -1,0 +1,6 @@
+taskd.certificate=~/.intheam/private.certificate.pem
+taskd.key=~/.intheam/private.key.pem
+taskd.ca=~/.intheam/ca.cert.pem
+taskd.server=inthe.am:53589
+taskd.credentials=inthe_am/niels/94ac15ef-216a-4959-9d0f-eb9fce5cf622
+taskd.trust=strict

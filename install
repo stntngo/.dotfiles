@@ -12,4 +12,10 @@ cd "${BASEDIR}"
 git -C "${DOTBOT_DIR}" submodule sync --quiet --recursive
 git submodule update --init --recursive "${DOTBOT_DIR}"
 
-python3 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" -d "${BASEDIR}" -p dotbot-yarn/yarn.py -p dotbot-rust/rust.py --plugin-dir dotbot-brew -c "${CONFIG}" "${@}"
+python3 "${BASEDIR}/${DOTBOT_DIR}/${DOTBOT_BIN}" \
+	-d "${BASEDIR}" \
+	-p dotbot-launchd/launchd.py \
+	-p dotbot-yarn/yarn.py \
+	-p dotbot-rust/rust.py \
+	--plugin-dir dotbot-brew \
+	-c "${CONFIG}" "${@}"

@@ -12,4 +12,6 @@
             todo          dotfiles.plugins.todo
             dressing      dotfiles.plugins.dressing
             phabricator   dotfiles.plugins.phabricator
-            mini          dotfiles.plugins.mini}})
+            worktree      dotfiles.plugins.worktree
+            mini          dotfiles.plugins.mini
+            dap           dotfiles.plugins.dap}})

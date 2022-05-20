@@ -1,6 +1,5 @@
 (module dotfiles.plugins.telescope
-  {require {vimp      vimp
-            telescope telescope
+  {require {telescope telescope
             builtin   telescope.builtin}})
 
 (telescope.setup 
@@ -13,12 +12,12 @@
 
 ; In the pre-lua days I used fzf for this sort of functionality.
 ; So that's where the command naming convention comes from.
-(vimp.nnoremap :fzb builtin.buffers)          ; Search buffers
-(vimp.nnoremap :fzf builtin.find_files)               ; Search files
-(vimp.nnoremap :fzrg builtin.live_grep)       ; Search Lines
-(vimp.nnoremap :<leader>Gt builtin.git_stash) ; Search Git Stashes
+(vim.keymap.set :n :fzb builtin.buffers)          ; Search buffers
+(vim.keymap.set :n :fzf builtin.find_files)       ; Search files
+(vim.keymap.set :n :fzrg builtin.live_grep)       ; Search Lines
+(vim.keymap.set :n :<leader>Gt builtin.git_stash) ; Search Git Stashes
 
-(vimp.nnoremap 
+(vim.keymap.set :n 
   :fzd 
   (fn []
     ; TODO: Don't harcode dotfiles path.

@@ -1,9 +1,16 @@
 (module dotfiles.plugins.nvimterminal
   {require {nvim aniseed.nvim
-            term nvim-terminal}})
+            term toggleterm.terminal}})
 
-(set nvim.o.hidden true)
+(local 
+  terminal 
+  (term.Terminal:new
+    {:direction :float
+     :on_open (fn [term]
+                (vim.keymap.set :t :jj :<c-\><c-n>))
+     :hidden true}))
 
-(term.setup
-  {:window        {:position :botright}
-   :toggle_keymap :<leader>$})
+(vim.keymap.set
+  [:n :t]
+  :<leader>$
+  #(terminal:toggle))

@@ -3,8 +3,7 @@
             core    aniseed.core
             astr    aniseed.string
             job     plenary.job
-            prelude prelude
-            vimp    vimp}})
+            prelude prelude}})
 
 (local diff-template "Summary: 
 
@@ -206,4 +205,4 @@ Monitoring and Alerts:
         (vim.api.nvim_buf_set_name buf path)
         (vim.api.nvim_buf_set_lines buf 0 -1 false template)))))
 
-(vimp.nnoremap :<leader>ad diff-create)
+(vim.keymap.set :n :<leader>ad diff-create)
