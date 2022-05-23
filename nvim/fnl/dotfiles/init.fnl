@@ -1,4 +1,7 @@
 (module dotfiles.init
-  {require {core dotfiles.core
-            mappings dotfiles.mappings
-            plugins dotfiles.plugins.init}})
+  {require {core aniseed.core}})
+
+(->> [:dotfiles.core
+      :dotfiles.mappings
+      :dotfiles.plugins.init]
+     (core.run! require))

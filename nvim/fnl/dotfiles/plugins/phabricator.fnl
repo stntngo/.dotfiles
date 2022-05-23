@@ -1,9 +1,10 @@
 (module dotfiles.plugins.phabricator
-  {require {nvim    aniseed.nvim
-            core    aniseed.core
-            astr    aniseed.string
-            job     plenary.job
-            prelude prelude}})
+  {require {nvim     aniseed.nvim
+            core     aniseed.core
+            astr     aniseed.string
+            job      plenary.job
+            terminal toggleterm.terminal
+            prelude  prelude}})
 
 (local diff-template "Summary: 
 
@@ -49,35 +50,15 @@ Monitoring and Alerts:
   ; manage the lifetime of this file myself rather.
   (.. (get-tmp-dir) "DIFF_EDITMSG" (prelude.rand-str 8)))
 
-(defn- append-to-buffer [win buf]
-  "Callback hook for use with plenary.job that will asynchrnously
-   append any lines passed to the returned function to the specified
-   buffer and window.
-
-   NOTE: The returned function has rudimentary 'auto-scrolling' and
-   assumes that you do not navigate away from the buffer that has been
-   created for you."
-  (fn [_ data]
-    (vim.schedule
-      (fn []
-        (vim.fn.appendbufline buf :$ data)
-        (when (= (nvim.get_current_buf) buf)
-          (nvim.win_set_cursor
-            win
-            [(nvim.buf_line_count buf) 0]))))))
-
 (defn- submit-arc-diff [path]
   "Submits the Differential stored at path to the
    phabricator repository configured for the current
    working directory"
-  (nvim.command "topleft new")
-  (let [win (nvim.get_current_win)
-        buf (nvim.get_current_buf)
-        j (job:new
-            {:command :arc
-             :args ["diff" "--create" "-F" path]
-             :on_stdout (append-to-buffer win buf)})]
-    (j:start)))
+   (terminal.Terminal:new
+     {:cmd           (.. "arc diff --create -F " path)
+      :direction     :float
+      :hidden        false
+      :close_on_exit true}))
 
 (defn- git-commit-history []
   "Constructs a list of strings in which each string represents
@@ -183,7 +164,6 @@ Monitoring and Alerts:
                                  (fn [commit]
                                    (.. "#\t" commit)))) 
                           line-diff)
-            win (nvim.get_current_win)
             buf (nvim.get_current_buf)
             path (tmp-diff)]
 

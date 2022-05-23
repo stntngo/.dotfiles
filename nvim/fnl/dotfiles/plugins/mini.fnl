@@ -34,4 +34,8 @@
 ; TODO: I don't like the default searching functionality for the starter
 ; page. I'd like to eventually use the starter page with my own
 ; configuration but as of right now I don't like what it has to offer.
-; (starter.setup {})
+; (starter.setup
+;   {:items [{:name "hello there"
+;             :action #(vim.notify "g'day")
+;             :section "Section 1"}
+;            (starter.sections.telescope)]})
