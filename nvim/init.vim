@@ -30,12 +30,6 @@ Plug 'akinsho/bufferline.nvim'
 " package is extra helpful inside of neovide which I haven't been able to 
 Plug 'direnv/direnv.vim'
 
-" XXX: Candidate for deletion. Just use mini.comment instead.
-Plug 'tpope/vim-commentary'
-" XXX: Candidate for deletion.
-" Have switched uses of the terminal to toggleterm.
-Plug 's1n7ax/nvim-terminal'
-
 Plug 'neovim/nvim-lspconfig'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
@@ -54,9 +48,6 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'folke/todo-comments.nvim'
-
-" XXX: Candidate for deletion
-Plug 'stevearc/dressing.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'

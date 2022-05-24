@@ -1,13 +1,16 @@
 (module dotfiles.plugins.mini
-  {require {core     aniseed.core
-            sessions mini.sessions
-            starter  mini.starter
-            surround mini.surround}})
+  {require {core        aniseed.core
+            sessions    mini.sessions
+            starter     mini.starter
+            surround    mini.surround
+            commentary  mini.comment}})
 
 (sessions.setup
   {:autowrite true})
 
 (surround.setup {})
+
+(commentary.setup {})
 
 ; <leader>ss prompts the user for a session name and stores the current
 ; session in the configured session directory under the given name.

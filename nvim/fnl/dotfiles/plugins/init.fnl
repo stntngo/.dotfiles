@@ -1,20 +1,19 @@
 (module dotfiles.plugins.init
   {require {core aniseed.core}})
 
-(->> [:vimgo
-      :telescope
-      :nvimterminal
-      :lspconfig
+(->> [:bufferline
+      :dap
       :fugitive
-      :trouble
+      :lspconfig
       :lualine
-      :bufferline
-      :treesitter
-      :todo
-      :dressing
-      :phabricator
-      :worktree
       :mini
+      :nvimterminal
+      :phabricator
       :taskwarrior
-      :dap]
+      :telescope
+      :todo
+      :treesitter
+      :trouble
+      :vimgo
+      :worktree]
      (core.run! (fn [package] (require (.. :dotfiles.plugins. package)))))

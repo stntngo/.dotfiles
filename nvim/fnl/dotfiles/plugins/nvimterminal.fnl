@@ -7,7 +7,7 @@
   (term.Terminal:new
     {:direction :float
      :on_open (fn [term]
-                (vim.keymap.set :t :jj :<c-\><c-n>))
+                (vim.keymap.set :t :jj :<c-\><c-n> {:buffer term.bufnr}))
      :hidden true}))
 
 (vim.keymap.set
