@@ -78,9 +78,13 @@ bind ,tg fillcmdline tabgroup
 bind ,cc composite get_current_url | chrome
 bind ,ft hint -c [class*="titlelink"]
 
+" Main 'command pane' commands
+bind ,C open calendar.google.com
+bind ,M open mail.google.com
+bind ,T open inthe.am
+
 " More familiar vim-style searching.
 bind / fillcmdline find
 bind ? fillcmdline find -?
 bind n findnext 1
 bind N findnext -1
-
