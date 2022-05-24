@@ -53,6 +53,7 @@
   - fennel
   - fzf
   - fd
+  - gcalcli
   - go
   - haskell-stack
   - leiningen
