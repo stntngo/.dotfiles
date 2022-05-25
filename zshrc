@@ -160,7 +160,7 @@ alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/co
 
 function t() {
 	session=$(basename $(pwd))
-	clean_session=$(tr -c "[:alnum:]" "_" <<< "$session")
+	clean_session=$(tr -c -d "[:alnum:]" <<< "$session")
 	if ! tmux has-session -t $clean_session > /dev/null
 	then
 		tmux new -s $clean_session
