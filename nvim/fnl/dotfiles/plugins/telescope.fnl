@@ -15,7 +15,6 @@
 (vim.keymap.set :n :fzb builtin.buffers)          ; Search buffers
 (vim.keymap.set :n :fzf builtin.find_files)       ; Search files
 (vim.keymap.set :n :fzrg builtin.live_grep)       ; Search Lines
-(vim.keymap.set :n :<leader>Gt builtin.git_stash) ; Search Git Stashes
 
 (vim.keymap.set :n 
   :fzd 
